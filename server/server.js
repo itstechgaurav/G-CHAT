@@ -1,4 +1,8 @@
 const {PORT, RT,CN, MD, express, bodyParser, app} = require("./config");
+const http = require('http');
+const server = http.createServer(app);
+const socketIo = require('socket.io');
+const io = socketIo(server);
 
 // routes started
 
@@ -28,6 +32,30 @@ app.get("/ohk", (req, res) => {
 
 // route ended
 
-app.listen(PORT, function () {
+
+
+//  socket.io routes
+
+let users = [];
+
+function newUser() {
+     let id = users.length + 1;
+     users.push(id);
+     return id;
+}
+
+
+io.on("connection", (socket) => {
+     socket.emit("new", newUser())
+
+     socket.on("disconnect", () => {
+          console.log("Someone is disconnected");
+     })
+
+});
+
+
+
+server.listen(PORT, function () {
     console.log("App is running on: " + PORT);
 });

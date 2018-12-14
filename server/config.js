@@ -35,7 +35,7 @@ app.use(session({
 
 app.use(flash());
 app.use("/*", MD("methods"));
-RT.get("/index.php", "auth@init");
+RT.get("/index.php", "auth/auth@init");
 app.use(express.static('public'));
 
 module.exports = {

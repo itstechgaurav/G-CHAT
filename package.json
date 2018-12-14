@@ -26,6 +26,7 @@
     "mongoose": "^5.3.12",
     "nodemailer": "^4.7.0",
     "nodemailer-juice": "^1.0.1",
+    "socket.io": "^2.2.0",
     "validator": "^10.9.0"
   }
 }
